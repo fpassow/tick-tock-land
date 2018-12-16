@@ -27,7 +27,7 @@ function advanceCounter(counter) {
 
 function toggleCounterById(counters, id){
 	return counters.map((counter)=>{
-		if (counter.id == id) {
+		if (counter.id === id) {
 			return {...counter, running: !counter.running}
 		} else {
 			return counter
