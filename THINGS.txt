@@ -20,3 +20,15 @@ state.counters.{
     reversed
 }
 
+TODOs
+=====
+Add counter
+Delete counter
+Reverse counter
+Counter has period which is multiple of system clocks
+Adjust a counter's period using up and down buttons
+Display period as frequency
+
+Stop and start system clock
+Change speed of system clock
+
