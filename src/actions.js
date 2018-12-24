@@ -32,3 +32,7 @@ export function decrPeriodAction(counterId) {
 export function deleteCounterAction(counterId) {
 	return {type:'DELETE_COUNTER', counterId: counterId}
 }
+
+export function resetCounterAction(counterId) {
+	return {type:'RESET_COUNTER', counterId: counterId}
+}

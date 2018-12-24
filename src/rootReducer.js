@@ -50,6 +50,12 @@ function rootReducer(state = state0, action) {
       	    state, 
       	    {counters: deleteCounterById(state.counters, action.counterId)}
       	)
+        case 'RESET_COUNTER':
+        return Object.assign(
+            {}, 
+            state, 
+            {counters: resetCounterById(state.counters, action.counterId)}
+        )
     default:
       return state;
   }
@@ -100,6 +106,16 @@ function adjustPeriodById(counters, counterId, adjustment){
 
 function deleteCounterById(counters, counterId){
 	return  counters.filter((counter)=>(counter.counterId !== counterId))
+}
+
+function resetCounterById(counters, counterId){
+  return  counters.map((counter)=>{
+    if (counter.counterId === counterId) {
+      return {...counter, count: 0, periodCount: 0}
+    } else {
+      return counter
+    }
+  })
 }
 
 export default rootReducer
