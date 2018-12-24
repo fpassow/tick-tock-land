@@ -14,7 +14,6 @@ function rootReducer(state = state0, action) {
       	    {counters: toggleCounterById(state.counters, action.id)}
       	)
     case 'ADJUST_PERIOD':
-
         return Object.assign(
       	    {}, 
       	    state, 
@@ -45,6 +44,12 @@ function rootReducer(state = state0, action) {
       	{}, 
       	state, 
       	{newCounterLabel: action.newCounterLabel})
+    case 'DELETE_COUNTER':
+        return Object.assign(
+      	    {}, 
+      	    state, 
+      	    {counters: deleteCounterById(state.counters, action.counterId)}
+      	)
     default:
       return state;
   }
@@ -91,6 +96,10 @@ function adjustPeriodById(counters, counterId, adjustment){
 			return counter
 		}
 	})
+}
+
+function deleteCounterById(counters, counterId){
+	return  counters.filter((counter)=>(counter.counterId !== counterId))
 }
 
 export default rootReducer

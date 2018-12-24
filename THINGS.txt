@@ -1,34 +1,8 @@
 
-Counters
-   are component-y
-
-   run off the system clock
-
-   need state to know their current count
-
-   need state if they advance less than once-per-tick
-
-   display in react
-
-state.counters.{
-    id,  +
-    count,  +
-    period,
-    remaining,
-    running,
-    label,  +
-    reversed
-}
-
 TODOs
 =====
-Add counter
 Delete counter
 Reverse counter
-Counter has period which is multiple of system clocks
-Adjust a counter's period using up and down buttons
-Display period as frequency
-
 Stop and start system clock
-Change speed of system clock
+Make it look better, without obscuring the code
 

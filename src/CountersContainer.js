@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import CounterComponent from './CounterComponent'
-import {startStopAction, incrPeriodAction, decrPeriodAction} from './actions'
+import {startStopAction, incrPeriodAction, decrPeriodAction, deleteCounterAction} from './actions'
 
 //--noncontainer to go inside container
-const CountersComponent = ({counters, toggleRunning, incrPeriod, decrPeriod})=>{
+const CountersComponent = ({counters, toggleRunning, incrPeriod, decrPeriod, deleteCounter})=>{
   return (
     <div>
       {counters.map((counter)=>{
@@ -13,6 +13,7 @@ const CountersComponent = ({counters, toggleRunning, incrPeriod, decrPeriod})=>{
                     toggleRunning={toggleRunning} 
                     incrPeriod={incrPeriod}
                     decrPeriod={decrPeriod}
+                    deleteCounter={deleteCounter}
                     {...counter} 
                 />
       })}
@@ -29,7 +30,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   toggleRunning: (id)=>{dispatch(startStopAction(id))},
   incrPeriod: (id)=>{dispatch(incrPeriodAction(id))},
-  decrPeriod: (id)=>{dispatch(decrPeriodAction(id))}
+  decrPeriod: (id)=>{dispatch(decrPeriodAction(id))},
+  deleteCounter: (id)=>{dispatch(deleteCounterAction(id))}
 })
 
 export default connect(
