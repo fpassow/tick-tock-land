@@ -1,7 +1,7 @@
 
 const state0 = {
   nextCounterId: 1,
-  newCounterLabel: 'Bob',
+  newCounterLabel: 'Counter 0',
   counters: []
 }
 

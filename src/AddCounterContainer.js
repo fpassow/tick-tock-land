@@ -8,7 +8,7 @@ const AddCounterComponent = ({addCounter, newCounterLabelChanged, newCounterLabe
   return (
   	<div>
   	  <input type="text" onChange={newCounterLabelChanged} value={newCounterLabel} />
-      <button onClick={addCounter}>Add</button>
+      <button onClick={addCounter}>New Counter</button>
     </div>
   )
 }
