@@ -13,7 +13,9 @@ import rootReducer from './rootReducer'
 
 const store = createStore(rootReducer, state0, applyMiddleware(thunkMiddleware))
 
-setInterval( ()=>{store.dispatch({type:'TICK'})}, 3000)
+//The "system clock" dispatches one TICK per second.
+//This drives everything that isn't driven by UI events.
+setInterval( ()=>{store.dispatch({type:'TICK'})}, 1000)
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 

@@ -1,34 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import CounterComponent from './CounterComponent'
-import { startStopAction } from './actions'
+import {startStopAction, incrPeriodAction, decrPeriodAction} from './actions'
 
 //--noncontainer to go inside container
-/*
-const CountersComponent = ({counters, toggleRunning})=>{
-  return (
-    <div>
-      {counters.map((counter)=>{
-        return <CounterComponent 
-                    key={counter.counterId.toString()} 
-                    counterd={counter.counterId}
-                    label={counter.label}
-                    count={counter.count}
-                    running={counter.running}
-                    toggleRunning={toggleRunning} 
-                />
-      })}
-    </div>
-  )
-} */
-
-const CountersComponent = ({counters, toggleRunning})=>{
+const CountersComponent = ({counters, toggleRunning, incrPeriod, decrPeriod})=>{
   return (
     <div>
       {counters.map((counter)=>{
         return <CounterComponent 
                     key={counter.counterId} 
                     toggleRunning={toggleRunning} 
+                    incrPeriod={incrPeriod}
+                    decrPeriod={decrPeriod}
                     {...counter} 
                 />
       })}
@@ -43,7 +27,9 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  toggleRunning: (id)=>{dispatch(startStopAction(id))}
+  toggleRunning: (id)=>{dispatch(startStopAction(id))},
+  incrPeriod: (id)=>{dispatch(incrPeriodAction(id))},
+  decrPeriod: (id)=>{dispatch(decrPeriodAction(id))}
 })
 
 export default connect(

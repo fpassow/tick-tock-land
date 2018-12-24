@@ -13,6 +13,13 @@ function rootReducer(state = state0, action) {
       	    state, 
       	    {counters: toggleCounterById(state.counters, action.id)}
       	)
+    case 'ADJUST_PERIOD':
+
+        return Object.assign(
+      	    {}, 
+      	    state, 
+      	    {counters: adjustPeriodById(state.counters, action.counterId, action.adjustment)}
+      	)
     case 'ADD_COUNTER':
         let nextCounterId = state.nextCounterId
         let nextState = Object.assign(
@@ -54,7 +61,7 @@ function advanceCounter(counter) {
 	} else {
 		//periodCount counts up to period, 
 		//  then we advance the count and reset periodCount
-        let periodCount = counter.periodCount + 1
+        let periodCount = counter.periodCount
         let count = counter.count
         periodCount = periodCount + 1
         if (periodCount >= counter.period) {
@@ -69,6 +76,17 @@ function toggleCounterById(counters, id){
 	return  counters.map((counter)=>{
 		if (counter.counterId === id) {
 			return {...counter, running: !counter.running}
+		} else {
+			return counter
+		}
+	})
+}
+
+function adjustPeriodById(counters, counterId, adjustment){
+	return  counters.map((counter)=>{
+		if (counter.counterId === counterId) {
+			//Ignore attempt to set period to less than 1
+			return {...counter, period: Math.max(1, counter.period + adjustment)}
 		} else {
 			return counter
 		}

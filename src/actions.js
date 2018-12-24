@@ -15,3 +15,11 @@ export function addCounterAction() {
 export function newCounterLabelAction(newCounterLabel) {
 	return {type:'NEW_COUNTER_LABEL', newCounterLabel: newCounterLabel}
 }
+
+export function incrPeriodAction(counterId) {
+	return {type:'ADJUST_PERIOD', counterId:counterId, adjustment: 1}
+}
+
+export function decrPeriodAction(counterId) {
+	return {type:'ADJUST_PERIOD', counterId:counterId, adjustment: -1}
+}
