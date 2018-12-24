@@ -24,7 +24,7 @@ function rootReducer(state = state0, action) {
       	    	    	counterId: nextCounterId, 
       		            label:state.newCounterLabel, 
       		            count:0, 
-      		            running: true,
+      		            running: false,
       		            period: 1,
       		            periodCount: 0
       		        }
@@ -66,8 +66,8 @@ function advanceCounter(counter) {
 }
 
 function toggleCounterById(counters, id){
-	return counters.map((counter)=>{
-		if (counter.id === id) {
+	return  counters.map((counter)=>{
+		if (counter.counterId === id) {
 			return {...counter, running: !counter.running}
 		} else {
 			return counter

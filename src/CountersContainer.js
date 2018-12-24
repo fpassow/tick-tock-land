@@ -26,7 +26,11 @@ const CountersComponent = ({counters, toggleRunning})=>{
   return (
     <div>
       {counters.map((counter)=>{
-        return <CounterComponent key={counter.counterId} {...counter} />
+        return <CounterComponent 
+                    key={counter.counterId} 
+                    toggleRunning={toggleRunning} 
+                    {...counter} 
+                />
       })}
     </div>
   )
