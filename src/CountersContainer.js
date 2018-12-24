@@ -4,14 +4,14 @@ import CounterComponent from './CounterComponent'
 import { startStopAction } from './actions'
 
 //--noncontainer to go inside container
-
+/*
 const CountersComponent = ({counters, toggleRunning})=>{
   return (
     <div>
       {counters.map((counter)=>{
         return <CounterComponent 
-                    key={counter.id} 
-                    id={counter.id}
+                    key={counter.counterId.toString()} 
+                    counterd={counter.counterId}
                     label={counter.label}
                     count={counter.count}
                     running={counter.running}
@@ -20,13 +20,23 @@ const CountersComponent = ({counters, toggleRunning})=>{
       })}
     </div>
   )
+} */
+
+const CountersComponent = ({counters, toggleRunning})=>{
+  return (
+    <div>
+      {counters.map((counter)=>{
+        return <CounterComponent key={counter.counterId} {...counter} />
+      })}
+    </div>
+  )
 }
 
 //--container--
 
-const mapStateToProps = state => ({
-  counters: state.counters
-})
+const mapStateToProps = state => {
+  return {counters: state.counters}
+}
 
 const mapDispatchToProps = dispatch => ({
   toggleRunning: (id)=>{dispatch(startStopAction(id))}

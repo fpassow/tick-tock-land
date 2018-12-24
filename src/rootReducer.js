@@ -9,20 +9,30 @@ function rootReducer(state = state0, action) {
       	{counters: advanceCounters(state.counters)})
     case 'STARTSTOP':
         return Object.assign(
-      	{}, 
-      	state, 
-      	{counters: toggleCounterById(state.counters, action.id)})
+      	    {}, 
+      	    state, 
+      	    {counters: toggleCounterById(state.counters, action.id)}
+      	)
     case 'ADD_COUNTER':
-        let nextId = state.nextId
-        return Object.assign(
-      	{}, 
-      	state, 
-      	{counters: state.counters.concat({id: nextId, 
-      		                              label:state.newCounterLabel, 
-      		                              count:0, 
-      		                              running: true})
-        },
-      	{nextId:nextId+1})
+        let nextCounterId = state.nextCounterId
+        let nextState = Object.assign(
+      	    {}, 
+      	    state, 
+      	    {
+      	    	counters: state.counters.concat(
+      	    	    {
+      	    	    	counterId: nextCounterId, 
+      		            label:state.newCounterLabel, 
+      		            count:0, 
+      		            running: true,
+      		            period: 1,
+      		            periodCount: 0
+      		        }
+      		    )
+            },
+      	    {nextCounterId:nextCounterId+1}
+      	)
+      	return nextState
     case 'NEW_COUNTER_LABEL':
       return Object.assign(
       	{}, 
@@ -39,7 +49,20 @@ function advanceCounters(counters) {
 }
 
 function advanceCounter(counter) {
-	return counter.running ? {...counter, count:counter.count+1} : counter
+	if (!counter.running) {
+		return counter
+	} else {
+		//periodCount counts up to period, 
+		//  then we advance the count and reset periodCount
+        let periodCount = counter.periodCount + 1
+        let count = counter.count
+        periodCount = periodCount + 1
+        if (periodCount >= counter.period) {
+        	periodCount = 0
+        	count = count + 1
+        }
+        return {...counter, count:count, periodCount:periodCount}
+	}
 }
 
 function toggleCounterById(counters, id){
