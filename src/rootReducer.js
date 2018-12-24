@@ -30,7 +30,7 @@ function rootReducer(state = state0, action) {
       	    	    	counterId: nextCounterId, 
       		            label:state.newCounterLabel, 
       		            count:0, 
-      		            running: false,
+      		            running: true,
       		            period: 1,
       		            periodCount: 0
       		        }

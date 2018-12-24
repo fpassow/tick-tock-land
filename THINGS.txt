@@ -1,8 +1,6 @@
 
 TODOs
 =====
-Delete counter
-Reverse counter
-Stop and start system clock
-Make it look better, without obscuring the code
+Reset counter
+Hitting return in the Label text area should create a new counter.
 
