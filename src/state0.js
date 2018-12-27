@@ -2,6 +2,7 @@
 const state0 = {
   nextCounterId: 1,
   newCounterLabel: 'Counter 0',
+  newCounterPeriod: 1,
   counters: []
 }
 

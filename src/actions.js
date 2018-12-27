@@ -9,9 +9,7 @@ export function tick() {
 	return {type: 'TICK'}
 }
 
-export function startStopAction(id) {
-	return {type:'STARTSTOP', id:id}
-}
+// Actions for creating a new counter
 
 export function addCounterAction() {
 	return {type:'ADD_COUNTER'}
@@ -19,6 +17,16 @@ export function addCounterAction() {
 
 export function newCounterLabelAction(newCounterLabel) {
 	return {type:'NEW_COUNTER_LABEL', newCounterLabel: newCounterLabel}
+}
+
+export function newCounterPeriodAction(newCounterPeriod) {
+	return {type:'NEW_COUNTER_PERIOD', newCounterPeriod: newCounterPeriod}
+}
+
+// Actions for controlling an existing counter
+
+export function startStopAction(id) {
+	return {type:'STARTSTOP', id:id}
 }
 
 export function incrPeriodAction(counterId) {

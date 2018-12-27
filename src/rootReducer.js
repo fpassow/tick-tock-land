@@ -20,6 +20,8 @@ function rootReducer(state = state0, action) {
       	    {counters: adjustPeriodById(state.counters, action.counterId, action.adjustment)}
       	)
     case 'ADD_COUNTER':
+
+    //USE state.newCounterPeriod, or default to 1 if its and empty string
         let nextCounterId = state.nextCounterId
         let nextState = Object.assign(
       	    {}, 
@@ -31,7 +33,7 @@ function rootReducer(state = state0, action) {
       		            label:state.newCounterLabel, 
       		            count:0, 
       		            running: true,
-      		            period: 1,
+      		            period: Number.parseInt(state.newCounterPeriod, 10),
       		            periodCount: 0
       		        }
       		    )
@@ -44,6 +46,20 @@ function rootReducer(state = state0, action) {
       	{}, 
       	state, 
       	{newCounterLabel: action.newCounterLabel})
+    case 'NEW_COUNTER_PERIOD':
+      //Update the string state.newCounterPeriod if and only if
+      // the new value can be parsed as an integer >= 1.
+      //Also allow an empty string, so the user can clear the inital "1".
+      let ncp = action.newCounterPeriod
+      let ncpp = Number.parseInt(ncp, 10)
+      if (ncp.length === 0 || ((ncpp >= 1) && (ncpp.toString() === ncp))) {
+        return Object.assign(
+          {}, 
+          state, 
+          {newCounterPeriod: action.newCounterPeriod})
+      } else {
+        return state
+      }
     case 'DELETE_COUNTER':
         return Object.assign(
       	    {}, 
